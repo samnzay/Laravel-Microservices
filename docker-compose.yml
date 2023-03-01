@@ -17,5 +17,12 @@ services:
     volumes:
       - database-data:/var/lib/mysql
 
+  # Redis Server
+  redis:
+    image: redis:alpine
+    command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}" # Run this command to require password for redis every time redis sever is started, .env file is used
+    ports:
+      - 6379:6379
+
 volumes:
   database-data: ~
