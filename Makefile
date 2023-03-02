@@ -29,6 +29,7 @@ stop: ## Only stop all containers, but not removed
 
 restart: stop start ## Restart all containers
 
+
 destroy:  stop ## Stop and remove all containers
 	@docker rm -vf ${CONTAINER_PHP}
 	@docker rm -vf ${CONTAINER_DATABASE}

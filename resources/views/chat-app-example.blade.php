@@ -21,8 +21,8 @@
     <br>
     <br>
     <p class="text-center p-0 m-0">Laravel WebSockets</p>
-    <h1 class="text-center p-0 m-0">Chat App Microservice</h1>
-    <p class="text-center ">By Samuel NZAYISENGA | Inspired by Emad Zaamout HT CLOUD</p>
+    <h1 class="text-center p-0 m-0">Chat App Example</h1>
+    <p class="text-center "><a href="">By Samuel NZAYISENGA | Inspired by Emad Zaamout</a></p>
     <div class="card mt-4">
       <div class="card-header p-2">
         <form>
