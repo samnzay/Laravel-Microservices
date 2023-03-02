@@ -4,6 +4,7 @@ services:
   # PHP Server
   # ==========
   php:
+    container_name: php-server
     build:
       context: . #current directory
       target: php-server # variable defined in Dockerfile's FROM directive
@@ -27,6 +28,7 @@ services:
   # Websocket
   # =========
   websocket:
+    container_name: websocket-server
     build:
       context: .
       target: php-server
@@ -53,6 +55,7 @@ services:
   # database Server
   # ===============
   database:
+    container_name: database-server
     image: mysql:8.0
     ports:
       - 3306:3306
@@ -70,6 +73,7 @@ services:
   # Redis Server
   # ============
   redis:
+    container_name: redis-server
     image: redis
     # Run this command to require password for redis every time redis sever is started, .env file is used
     command: |
@@ -80,6 +84,7 @@ services:
   # Queue Server
   # ============
   queue:
+    container_name: queue-server
     build:
       context: .
       target: php-server
@@ -97,6 +102,7 @@ services:
   # NodeJS Server
   # =============
   node:
+    container_name: node-server
     build:
       context: .
       target: node-server
