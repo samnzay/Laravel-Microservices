@@ -23,6 +23,31 @@ services:
     depends_on: # let db and redis be created first, then php_server, after.
       - database
       - redis
+
+  # Websocket
+  # =========
+  websocket:
+    build:
+      context: .
+      target: php-server
+      args: 
+        - APP_ENV=${APP_ENV}
+
+    environment:
+      - APP_ENV=${APP_ENV}
+      - CONTAINER_ROLE=websocket
+      
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    
+    ports: 
+      - 6001:6001
+
+    depends_on:
+      - database
+      - redis
+
   
   
   # database Server
