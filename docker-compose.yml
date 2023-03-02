@@ -1,7 +1,28 @@
-version: "3.3"
+version: "3.7"
 
 services:
+  # PHP Server
+  php:
+    build:
+      context: . #current directory
+      target: php-server # variable defined in Dockerfile's FROM directive
+      args:
+        - APP_ENV=${APP_ENV}
 
+    environment: 
+      - APP_ENV=${APP_ENV}
+      - CONTAINER_ROLE=app
+
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www # map current directory into /var/www
+    ports: 
+      - 8000:8000
+
+    depends_on: # let db and redis be created first, then php_server, after.
+      - database
+      - redis
+  
   # database Server
   database:
     image: mysql:8.0
@@ -15,14 +36,16 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     
     volumes:
-      - database-data:/var/lib/mysql
+      - db-data:/var/lib/mysql
 
   # Redis Server
   redis:
-    image: redis:alpine
-    command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}" # Run this command to require password for redis every time redis sever is started, .env file is used
+    image: redis
+    # Run this command to require password for redis every time redis sever is started, .env file is used
+    command: |
+      redis-server --appendonly yes --requirepass  "${REDIS_PASSWORD}"
     ports:
-      - 6379:6379
+      - "6379:6379"
 
 volumes:
-  database-data: ~
+  db-data: ~
