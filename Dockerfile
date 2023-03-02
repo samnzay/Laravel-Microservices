@@ -23,3 +23,19 @@ ENV PORT=8000
 # RUN chmod +x ./docker/entrypoint.sh
 # install dependencies, run migrations etc...
 ENTRYPOINT [ "docker/entrypoint.sh" ]
+
+#=====================================
+# NodeJs
+
+FROM node:14-alpine as node-server
+
+WORKDIR /var/www
+# copy code files into WORKDIR folder
+# COPY . .
+# or
+COPY . /var/www
+
+RUN npm install --global cross-env
+RUN npm install
+
+VOLUME /var/www/node_modules
