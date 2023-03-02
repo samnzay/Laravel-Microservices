@@ -1,4 +1,4 @@
-.PHONY: help
+.PHONY: help ps build start fresh stop restart destroy destroy-auto cahe cache-clear migrate migrate-fresh npm-dev npm-prod logs logs-php logs-node logs-redis logs-queue logs-db ssh-php ssh-redis ssh-node ssh-db
 
 CONTAINER_PHP=php-server
 CONTAINER_NODE=node-server
